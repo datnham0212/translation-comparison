@@ -1,4 +1,9 @@
 from transformers import pipeline
+from nltk.tokenize import sent_tokenize
+
+def split_paragraph(paragraph):
+    sentences = sent_tokenize(paragraph)
+    return sentences
 
 def avoid_repetition(text):
     translated_text = transformer(text, max_length=40)[0]['translation_text']
@@ -28,25 +33,9 @@ if __name__ == '__main__':
     # Tải model phiên dịch từ Hugging Face
     transformer = pipeline("translation", model="VietAI/envit5-translation")
 
-    sentences = [
-        # "It's never too late to learn something new.",
-        # "Knowledge is power.",
-        # "Every day is a new beginning.",
-        # "The journey of a thousand miles begins with a single step.",
-        # "Believe in yourself and all that you are."
-        # "It's never too late to do the right thing.",
-        # "The only way to do great work is to love what you do.",
-        # "The only limit to our realization of tomorrow will be our doubts of today.",
-        # "The best way to predict the future is to create it.",
-        # "The only thing we have to fear is fear itself.",
-        # "Doing the right thing is never easy."
-        "Hello world",
-        "Greetings fellow travellers",
-        "What are you talking about?",
-        "That's just pure balooney"
-    ]
+    paragraph = "This happened last week, and while she didn't seem malicious, the things she said was creepy. I (19M) was going home from university, and to get home, I have to use the train."
 
-    for sentence in sentences:
+    for sentence in split_paragraph(paragraph):
         translated_text = avoid_repetition(sentence)
         translated_text = remove_vi_at_beginning(translated_text)
         print(f"Original: {sentence}\nTranslated: {translated_text}\n")
