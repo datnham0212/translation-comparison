@@ -1,43 +1,38 @@
 from transformers import pipeline
 from nltk.tokenize import sent_tokenize
 
+# Hàm để xử lý văn bản sau khi dịch 
+def post_processing(text):
+    try:
+        # Dịch văn bản sử dụng pipeline của Hugging Face
+        translated_text = transformer(text, max_length=40)[0]['translation_text']
+    except Exception as e:
+        print(f"Dịch thất bại: {e}")
+        return text  # Trả về văn bản gốc nếu dịch thất bại
+    
+    return translated_text
+
+# Hàm để chia đoạn văn thành các câu
 def split_paragraph(paragraph):
-    sentences = sent_tokenize(paragraph)
-    return sentences
+    return sent_tokenize(paragraph)
 
-def avoid_repetition(text):
-    translated_text = transformer(text, max_length=40)[0]['translation_text']
-    
-    # Tách câu thành các từ
-    words = translated_text.split()
-
-    # Tạo 1 set để lưu các từ đã xuất hiện
-    seen_words = set()
-
-    # Tạo 1 list chứa kết quả không lặp lại từ để trả về
-    result = []
-
-    # Duyệt qua các từ trong câu
-    for word in words:
-        if word not in seen_words:
-            seen_words.add(word)
-            result.append(word)
-    
-    return ' '.join(result)
-
+# Hàm để loại bỏ "vi" ở đầu câu, nếu có
 def remove_vi_at_beginning(translated_text):
-    return ' '.join(translated_text.split()[1:])
-    
+    if translated_text.startswith("vi"):
+        return ' '.join(translated_text.split()[1:])
+    return translated_text
 
 if __name__ == '__main__':
-    # Tải model phiên dịch từ Hugging Face
+    # Tải mô hình dịch từ Hugging Face
     transformer = pipeline("translation", model="VietAI/envit5-translation")
 
-    paragraph = "This happened last week, and while she didn't seem malicious, the things she said was creepy. I (19M) was going home from university, and to get home, I have to use the train."
+    # Đoạn văn mẫu
+    sample_paragraph = "I (19M) was going home from university, and to get home, I have to use the train."
 
-    for sentence in split_paragraph(paragraph):
-        translated_text = avoid_repetition(sentence)
-        translated_text = remove_vi_at_beginning(translated_text)
-        print(f"Original: {sentence}\nTranslated: {translated_text}\n")
+    # Chia đoạn văn mẫu thành các câu
+    sentences = split_paragraph(sample_paragraph)
 
-            
+    for sentence in sentences:
+        # Dịch và xử lý sau khi dịch
+        translated_text = post_processing(sentence)
+        print(f"Gốc: {sentence}\nĐã dịch: {translated_text}\n")
