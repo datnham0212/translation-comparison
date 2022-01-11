@@ -10,7 +10,7 @@ def post_processing(text):
         print(f"Dịch thất bại: {e}")
         return text  # Trả về văn bản gốc nếu dịch thất bại
     
-    return translated_text
+    return remove_vi_at_beginning(translated_text)
 
 # Hàm để chia đoạn văn thành các câu
 def split_paragraph(paragraph):

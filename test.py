@@ -10,12 +10,10 @@ def post_processing(text):
     except Exception as e:
         print(f"Dịch thất bại: {e}")
         return text  # Trả về văn bản gốc nếu dịch thất bại
-    
-    return translated_text
 
     # Loại bỏ từ lặp lại và "vi" ở đầu câu nếu có
     # translated_text = avoid_repetition(translated_text)
-    # return remove_vi_at_beginning(translated_text)
+    return remove_vi_at_beginning(translated_text)
 
 # Hàm để chia đoạn văn thành các câu
 def split_paragraph(paragraph):
