@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+}
+
+.box {
+    flex: 0.3;
+    border: 1px solid black;
+    padding: 20px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.compare-box {
+    display: flex;
+    flex: 0.4;
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
