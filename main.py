@@ -8,8 +8,8 @@ from nltk.translate.bleu_score import sentence_bleu
 translator = Translator()
 
 # Load your English captions CSV file
-english_captions = pd.read_csv('forrest_gump_transcript_en.csv')
-human_translations = pd.read_csv('forrest_gump_transcript_vn.csv')
+english_captions = pd.read_csv('samples/forrest_gump_transcript_en.csv')
+human_translations = pd.read_csv('samples/forrest_gump_transcript_vn.csv')
 
 # Check the columns for verification
 print("English Captions Columns:", english_captions.columns)
@@ -46,7 +46,7 @@ english_captions['bleu_score'] = english_captions.apply(
 )
 
 # Step 7: Save the comparison results to a CSV file
-english_captions.to_csv('pyvi_comparison_results.csv', index=False)
+english_captions.to_csv('samples/pyvi_comparison_results.csv', index=False)
 
 # Print some of the results for quick inspection
 print(english_captions[['Line Number', 'Transcript Line', 'translated_vietnamese', 'tokenized_vietnamese', 'similarity', 'bleu_score']].head())
