@@ -1,0 +1,6 @@
+Flask
+python-dotenv
+nltk
+scikit-learn
+transformers
+torch

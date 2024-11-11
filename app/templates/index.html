@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subtitle Cosine Similarity</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Cosine Similarity Between Subtitles</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <label for="file1">Select Subtitle File 1:</label>
+            <input type="file" name="file1" id="file1" required>
+            <br>
+            <label for="file2">Select Subtitle File 2:</label>
+            <input type="file" name="file2" id="file2" required>
+            <br>
+            <button type="submit">Calculate Similarity</button>
+        </form>
+
+        {% if paragraph1 and paragraph2 %}
+            <div class="paragraphs">
+                <div class="paragraph">
+                    <h2>Subtitle 1</h2>
+                    <p>{{ paragraph1 }}</p>
+                </div>
+                <div class="paragraph">
+                    <h2>Subtitle 2</h2>
+                    <p>{{ paragraph2 }}</p>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if similarity %}
+            <h2>Cosine Similarity: {{ similarity }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,12 +1,33 @@
-Đánh giá mức độ tương đồng của 2 bản dịch tiếng việt <br />
-Mục tiêu: Xác định mức độ giống nhau giữa hai văn bản. <br />
-Ví dụ Input: Hai tệp phụ đề 1 bộ phim (en & vn), dịch bản en bằng google dịch rồi đối chiếu với bản vn <br />
-Ví dụ Output: Điểm số thể hiện mức độ tương đồng giữa 2 bản dịch tiếng việt - 1 do người dịch, 1 do từ google dịch (ví dụ: 80%). <br />
+### Tóm tắt quá trình phát triển project
 
-Kế hoạch: <br />
-1. Sử dụng thư viện python googletrans để dịch phụ đề tiếng anh sang tiếng việt
-2. Sử dụng thư viện underthesea hoặc pyvi để áp dụng lemmatization hoặc stemming cho cả 2 bản dịch tiếng việt
-3. So sánh sự tương đồng giữa 2 bản dịch tiếng việt (sử dụng 1 trong số các phương pháp <br />
-   như là khoảng cách Levenshtein hoặc BLEU hoặc tương đồng Cosine <br />
+#### Mô tả Project:
+- Đánh giá mức độ tương đồng của 2 bản dịch tiếng Việt.
+- Mục tiêu: Xác định mức độ giống nhau giữa hai văn bản.
+- Ví dụ: So sánh hai tệp phụ đề srt của một bộ phim (en & vn), dịch bản en bằng Google Dịch rồi đối chiếu với bản vn.
 
-ChatGPT hướng dẫn: https://chatgpt.com/share/670b3afa-163c-800c-9563-b6568d58bd3a
+#### Cài đặt các thư viện cần thiết:
+- Sử dụng các thư viện như Flask, python-dotenv, nltk, scikit-learn, transformers, torch.
+
+#### Cấu hình ứng dụng:
+- Tạo file config.py để cấu hình các biến môi trường và thư mục upload.
+
+#### Tạo ứng dụng Flask:
+- Tạo file run.py để khởi chạy ứng dụng Flask.
+
+#### Xử lý và tính toán tương đồng văn bản:
+- Tạo file utils.py để xử lý văn bản và tính toán độ tương đồng cosine giữa hai đoạn văn bản.
+
+#### Xây dựng các route cho ứng dụng:
+- Tạo file route.py để xử lý các yêu cầu từ người dùng, upload file và tính toán độ tương đồng.
+
+### Cách thức chạy chương trình
+
+#### Cài đặt các thư viện cần thiết:
+- Thiết lập biến môi trường:<br/>
+    - Tạo file .env và thêm các biến môi trường cần thiết (ví dụ: SECRET_KEY).
+
+#### Chạy ứng dụng Flask:
+- Truy cập ứng dụng:<br/>
+    - Mở trình duyệt và truy cập http://127.0.0.1:5000/ để sử dụng ứng dụng.
+
+
